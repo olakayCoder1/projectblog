@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}MSSN ILORIN{% endblock%} </title>
+
+    {% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/65f0f5bcdf.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <!-- Navigation section top.  -->
+    <!-- Navigation section top.  -->
+    <!-- Navigation section top.  -->
+    <nav>
+        <div class="left-side-nav">
+            <img src="{%static 'images/images2.jpeg' %}">
+            <ul>
+                <li><a href="#"><i class="far fa-bell"></i></a></li>
+                <li><a href="#"><i class="fas fa-comments"></i></a></li>
+            </ul>
+        </div>
+        <div class="right-side-nav">
+            <input type="text" placeholder="Search post">
+            <div class="online" onclick="settingMenu()">
+                <img onclick="settingMenu()" src="{%static 'images/python.jpg.png' %}">
+            </div>
+        </div>
+    </nav>
+    <!-- Content setion -->
+    <div class="main-content">
+        <!-- Right side nav section -->
+        <!-- Right side nav section -->
+        <!-- Right side nav section -->
+        <div class="left-side">
+            <ul class="sideNav">
+                <li><a href="{% url 'posts' %}"><i class="fas fa-home"></i>  Home</a></li>
+                <li><a href="#"><i class="fas fa-quran"></i>  Arabic school</a></li>
+                <li><a href="#"><i class="fas fa-graduation-cap"></i> Scholarship</a></li>
+                <li><a href="#"><i class="far fa-calendar-alt"></i>  Hijra Calendar</a></li>
+                <li><a href="#"><i class="fas fa-utensils"></i>  Halal Food</a></li>
+                <li><a href="#"><i class="fas fa-history"></i>  About</a></li>
+                <hr />
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i> Settings/privacy</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-adjust"></i> Theme</a>
+                </li>
+                <hr> {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'signin' %}">
+                        <i class="fas fa-user-friends"></i> Sign In</a>
+                </li>
+                <li>
+                    <a href="{% url 'register' %}">
+                        <i class="fas fa-sign-out-alt"></i>Register</a>
+                    {% endif%}
+
+            </ul>
+
+
+        </div>
+        <!-- Center side section -->
+        <!-- Center side  section -->
+        <!-- Center side. section -->
+        <div class="center">
+            {% block content %}{% endblock%}
+        </div>
+
+        <!-- Left side section -->
+        <!-- Left side section -->
+        <!-- Left side  section -->
+        <div class="right-side">
+            {% block content-left%}{% endblock%}
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+<!-- partial -->
+
+</body>
+
+</html>

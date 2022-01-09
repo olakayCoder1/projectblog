@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %} {% block title%}{{ request.user }} profile{% endblock %} {% block content %}
+
+<div>
+    <div>
+        <h2> Username : {{ name.username }}</h2>
+        <h3>Email address : {{ name.email }}</h3>
+    </div>
+    <div>
+        {% for post in user_post %}
+        <p>{{ post.head}}</p>
+        <p>{{ post.content }}</p>
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock %}

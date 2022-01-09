@@ -1,0 +1,122 @@
+{% extends 'blog/base.html' %}{% block title%}posts{% endblock%}{% block content%} {% load static %}
+
+<div class="user-post">
+    <div class="online-post">
+        <img src="{%static 'images/olakay.png' %}">
+        <h4>{{ user.username }}</h4>
+    </div>
+    <div class="post-talk">
+        <form action="create-post/" method="post">
+            {% csrf_token%}
+            <input style="
+            width: 80%;
+            height: 50px;
+            border-top: transparent;
+            border-right: transparent;
+            border-left: transparent;
+            padding: 10px;
+            outline: none;" class="copy" name='title' type="text" placeholder="Post Title">
+            <textarea name='content' placeholder="Post content"></textarea><br />
+            <span class="postPhoto"><i class="fas fa-camera"></i>Photo</span><input type="file" id="myFile" name="post_img">
+
+            <button type="submit">Post</button>
+        </form>
+        <span class="postPhoto"><i class="fas fa-camera"></i>Photo</span>
+    </div>
+</div>
+<div style="text-align: center;">
+    <h4><i>POSTS</i></h4>
+</div>
+<div>
+    {% for n in m %}
+
+    <!------ News Update ----->
+    <div class="news-update">
+        <div class="news-post-user">
+            <div class="new-post-user-about">
+                <img src="{%static 'images/python.jpg.png' %}">
+                <h4>{{ n.author_id.username }}</h4>
+            </div>
+            <p class="post-date">{{ n.date }}</p>
+        </div>
+        <a style=" text-decoration: none; color: black;" href="{% url 'view-post' n.id %}">
+            <h4>{{ n.head }} : </h4>
+
+            <p>{{ n.content|truncatewords:10 }}</p>
+            {% if n.post_img %}
+            <img class="postImg" src="{{ n.post_img.url}}">{% endif%}
+        </a>
+
+        <div class="postRespond">
+            <span class="feel"><i class="fas fa-thumbs-up"></i>780</span>
+            <span class="feel"><i class="fas fa-thumbs-down"></i>3</span>
+            <span class="feel"><i class="fas fa-share"></i>931</span><span class="feel"><i class="fas fa-comment-alt"></i>675</span>
+            <input class="feel comment" placeholder="Comment"><br/>
+            <a href="#">View Comments</a>
+        </div>
+    </div>
+    {% endfor%}
+</div>
+
+<div style="display: flex; justify-content: space-between;" class="pagination">
+    {% if m.has_previous %}
+    <p><button style="width: 100px; height: 30px; border-radius: 10px; background-color: blue; color: white;" class="post-nav"><a  style="color: white;" href="?page={{ m.previous_page_number }}">New posts</a></button></p>
+    {% endif %} {% if m.has_next %}
+    <p><button style="width: 100px; height: 30px; border-radius: 10px; background-color: blue; color: white;" class="post-nav"><a style="color: white;" href="?page={{ m.next_page_number }}">Old posts</a> {% endif %}</button></p>
+</div>
+
+<div class="location-contact">
+    <h2>Contact Us</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126276.28636998787!2d4.595081913824665!3d8.486354487574024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10364dd6787de18f%3A0x9c511e529bfec267!2sBasin%20Primary%20And%20Secondary%20School!5e0!3m2!1sen!2sng!4v1630076091861!5m2!1sen!2sng"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <div class="contact&copyright">
+        <div class="section" id="section" id="contacts">
+            <div class="social-link">
+                <a href="#">
+                    <img alt="Facebook" src="file:///storage/emulated/0/Pictures/Screenshot/Screenshot_20210820-084932.png" />
+                </a>
+                <a href="#">
+                    <img alt="Twitter" src="file:///storage/emulated/0/Pictures/Screenshot/Screenshot_20210820-084850.png" />
+                </a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Olakay web , ©copyright 2021</p>
+        </div>
+    </div>
+</div>
+
+{% for n in m %} {{ n.post_img}} {% endfor%} {% endblock%} {% block content-left%}
+<div class="event-part">
+    <div class="event-header">
+        <h4>Events</h4>
+        <a href="#">See all</a>
+    </div>
+    <div class="event-main">
+        <img src="{%static 'images/olakay.png.jpg' %}">
+        <div class="about-event">
+            <h4>Education</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Basin Gate</p>
+            <p>Cis Quiz</p>
+        </div>
+    </div>
+    <div class="event-main">
+        <img src="{%static 'images/images4.jpeg' %}">
+        <div class="about-event">
+            <h4>Tech</h4>
+            <p><i class="fas fa-map-marker-alt"></i> CISLT</p>
+            <p>Web design</p>
+        </div>
+    </div>
+</div>
+<div class="advert">
+    <div class="advert-header">
+        <h4> Advertisement </h4>
+        <a href="#">See all</a>
+    </div>
+    <img src="{%static 'images/images3.jpeg' %}" alt="">
+    <hr>
+</div>
+<div class="organiser"></div>
+</div>
+{% endblock%}
