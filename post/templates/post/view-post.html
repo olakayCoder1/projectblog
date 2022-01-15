@@ -1,5 +1,164 @@
-<h2>{{ request.user}}</h2>
-<p>Date posted : {{ post.date}}</p>
-<hr>
-<h4>{{ post.title }}</h4>
-<p>{{ post.content }}</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ post.author_id.username }} posts</title>
+    <script src="https://kit.fontawesome.com/65f0f5bcdf.js" crossorigin="anonymous"></script>
+    {% load static%}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #dff3f3;
+            font-family: "Poppings", sans-serif;
+        }
+        
+        .del-btn {
+            padding: 10px;
+            color: #ff3b3b;
+            border: 1px solid #ff3b3b;
+            border-radius: 5px;
+        }
+        
+        .news-update,
+        .post-main {
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ff3b3b3b;
+            border-radius: 10px;
+            width: 70%;
+            margin: 10px auto;
+        }
+        
+        .post-main {
+            background: #5adcdc;
+        }
+        
+        a {
+            color: #111;
+            text-decoration: none;
+        }
+        
+        .news-update.last {
+            margin-bottom: 10px;
+        }
+        
+        .news-post-user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-post img,
+        .news-post-user img,
+        .profile-setting .online-post img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin: 10px;
+        }
+        
+        .post-talk {
+            padding: 10px;
+        }
+        
+        .post-talk textarea,
+        .copy {
+            width: 80%;
+            height: 50px;
+            border-top: transparent;
+            border-right: transparent;
+            border-left: transparent;
+            padding: 10px;
+            outline: none;
+        }
+        
+        .postVideo,
+        .postPhoto {
+            margin: 5px 10px 30px 10px;
+        }
+        
+        .new-post-user-about {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .postImg {
+            width: 100%;
+            height: 250px;
+        }
+        
+        .feel {
+            margin: 10px 5px;
+        }
+        
+        .comment {
+            width: 150px;
+            height: 20px;
+            border-radius: 20px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="post-main">
+
+            <div class="news-post-user">
+                <div class="new-post-user-about">
+                    <img src="{%static 'images/python.jpg.png' %}">
+                    <h4>{{ post.author_id.username }}</h4>
+                </div>
+                <p class="post-date">{{ post.date }}</p>
+            </div>
+            <div class="post-main-detail">
+                <h2>{{ post.head }}</h2>
+                <p>{{ post.content }}</p>
+                {% load static %} {% if post.post_img %}
+                <img style="width: 100%; height: 400px;" src="{{ post.post_img.url }}" alt=""> {% endif %}
+            </div>
+            <div class="postRespond">
+                <span class="feel"><i class="fas fa-thumbs-up"></i>780</span>
+                <span class="feel"><i class="fas fa-thumbs-down"></i>3</span>
+                <span class="feel"><i class="fas fa-share"></i>931</span><span class="feel"><i class="fas fa-comment-alt"></i>675</span>
+                <input class="feel comment" placeholder="Comment"><br/>
+                <a href="#">View Comments</a>{% if post.author_id.username == request.user.username %}
+                <button class="del-btn">Deletet post </button> {% endif %}
+            </div>
+
+        </div>
+
+        <div class="post-all">
+            {% for p_post in past_post reversed %}
+            <div class="news-update">
+                <div class="news-post-user">
+                    <div class="new-post-user-about">
+                        <img src="{%static 'images/python.jpg.png' %}">
+                        <h4>{{ p_post.author_id.username }}</h4>
+                    </div>
+                    <p class="post-date">{{ p_post.date }}</p>
+                </div>
+                <a style=" text-decoration: none; color: black;" href="{% url 'view-post' p_post.id %}">
+                    <h4>{{ p_post.head|upper}} : </h4>
+
+                    <p>{{ p_post.content}}</p>
+                    {% if p_post.post_img %}
+                    <img style="width: 100%; height: 400px;" class="postImg" src="{{ p_post.post_img.url}}">{% endif%}
+                </a>
+
+                <div class="postRespond">
+                    <span class="feel"><i class="fas fa-thumbs-up"></i>780</span>
+                    <span class="feel"><i class="fas fa-thumbs-down"></i>3</span>
+                    <span class="feel"><i class="fas fa-share"></i>931</span><span class="feel"><i class="fas fa-comment-alt"></i>675</span>
+                    <input class="feel comment" placeholder="Comment"><br/>
+                    <a href="#">View Comments</a>
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+</body>
+
+</html>

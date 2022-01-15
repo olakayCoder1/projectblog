@@ -8,7 +8,7 @@
     <style>
         body {
             background-size: cover;
-            background: #dff3f3;
+            background-color: #44aacc;
             font-family: 'HelveticaNeue', 'Arial', sans-serif;
         }
         
@@ -175,21 +175,24 @@
                 {% csrf_token %}
                 <div class="form-item">
                     <p class="formLabel">Username</p>
-                    <input type="text" name="username" id="email" class="form-style" autocomplete="off" />
+                    <input type="text" name="username" id="email" class="form-style" autocomplete="off" required />
                 </div>
                 <div class="form-item">
                     <p class="formLabel">Email</p>
-                    <input type="email" name="email" id="email" class="form-style" autocomplete="off" />
+                    <input type="email" name="email" id="email" class="form-style" autocomplete="off" required />
                 </div>
                 <div class="form-item">
                     <p class="formLabel">Password</p>
-                    <input type="password" name="password1" id="email" class="form-style" autocomplete="off" />
+                    <input type="password" name="password1" id="email" class="form-style" autocomplete="off" required/>
                 </div>
                 <div class="form-item">
                     <p class="formLabel">Confirm Password</p>
-                    <input type="password" name="password2" id="password" class="form-style" />
+                    <input type="password" name="password2" id="password" class="form-style" required />
                     <!-- <div class="pw-view"><i class="fa fa-eye"></i></div> -->
                 </div>
+                {% for massage in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
 
                 <div class="form-item">
                     <p class="pull-left"><a href="{% url 'signin' %}"><small>Log In</small></a></p>

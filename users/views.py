@@ -7,27 +7,32 @@ from django.contrib.auth.decorators import login_required
 from users.forms import RegisterUser
 
 
-# Create your views here.
 
 
 def register_user(request):
+
     if request.method == 'POST':
         print(request.POST)
+
         username = request.POST['username']
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         if password1 == password2:
             if User.objects.filter(username=username).exists():
-                messages.ERROR(request, 'Username Already Exist')
+                messages.Error(request, 'Username Already Exist')
                 return redirect('register')
             elif User.objects.filter(email=email).exists():
-                messages.ERROR(request, 'Email Already In Used')
+                messages.Info(request, 'Email Already In Used')
                 return redirect('register')
             else:
                 user = User.objects.create_user(username=username,email=email,password=password2)
                 user.save()
-                return redirect('posts')
+                return redirect('signin')
+        else:
+            messages.Info(request, 'Password does not matched')
+            return render(request, 'users/register.html')
+
     else:
         return render(request, 'users/register.html')
 
@@ -42,8 +47,8 @@ def login(request):
             auth.login(request,user)
             return redirect('posts')
         else:
-            messages.ERROR(request, "You don't have account with use please sign up first")
-            return redirect('signup')
+            messages.Error(request, "You don't have account with use please sign up first")
+            return redirect('signin')
 
 
 

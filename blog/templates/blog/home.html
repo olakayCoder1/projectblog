@@ -1,2 +1,99 @@
-{% extends 'blog/base.html' %}{% block title%}yteqof{% endblock%}{% block content%}
-<h2>ygdyf7p9wegt7g9a9tgpt</h2>{% endblock%}
+<!DOCTYPE html>
+<html lang="en">
+<title>Home</title>
+{% load static%}
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+    
+    body {
+        background: url("{%static 'images/olakay.png' %}");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: #44aacc;
+    }
+    
+    div,
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: exo, sans-serif;
+    }
+    
+    .wrapper {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .message {
+        box-sizing: border-box;
+        width: 100%;
+        height: 45%;
+        bottom: 0;
+        display: block;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 1.5rem;
+    }
+    
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    li {
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.6);
+        font-size: 20px;
+        border-radius: 10px;
+    }
+    
+    li:hover {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+    li:not(last-child) {
+        margin: 10px;
+    }
+    
+    li:last-child {
+        float: right;
+        margin-right: 20px;
+    }
+</style>
+
+<head>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'register' %}">Sign Up</a></li>
+                    <li><a href="{% url 'signin' %}">Sign In</a></li>
+                    <li><a href="#">About Us</a></li>
+
+
+                </ul>
+            </nav>
+        </div>
+        <div class="message">
+            <h1>Welcome to Zenith of News</h1>
+            <p>Join us today to stay updated with what is gpoing on around the world</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

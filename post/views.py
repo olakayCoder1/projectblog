@@ -52,7 +52,9 @@ def add_post(request):
 
 def post_view(request, id):
     post= Posts.objects.get(id=id)
-    return render(request, 'post/view-post.html', {'post': post })
+    post_own = post.author_id.username
+    post_own_all = Posts.objects.filter(author_id=User.objects.get(username=post_own))
+    return render(request, 'post/view-post.html', {'post': post, 'past_post': post_own_all})
 
 
 

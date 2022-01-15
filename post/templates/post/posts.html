@@ -1,5 +1,9 @@
 {% extends 'blog/base.html' %}{% block title%}posts{% endblock%}{% block content%} {% load static %}
-
+<style>
+    input {
+        font-size: 16px;
+    }
+</style>
 <div class="user-post">
     <div class="online-post">
         <img src="{%static 'images/olakay.png' %}">
@@ -15,7 +19,7 @@
             border-right: transparent;
             border-left: transparent;
             padding: 10px;
-            outline: none;" class="copy" name='head' type="text" placeholder="Post Title">
+            outline: none;" class="copy" name='head' type="text" placeholder="Post Title" required>
             <textarea name='content' placeholder="Post content"></textarea><br />
             <span class="postPhoto"><i class="fas fa-camera"></i>Photo</span><input type="file" id="myFile" name="post_img">
 
@@ -39,10 +43,11 @@
             <p class="post-date">{{ n.date }}</p>
         </div>
         <a style=" text-decoration: none; color: black;" href="{% url 'view-post' n.id %}">
-            <h4>{{ n.head }} : </h4>
-
-            <p>{{ n.content|truncatewords:10 }}</p>
-            {% if n.post_img %} {{ n.post_img.url}}
+            {% if n.head %}
+            <h4>{{ n.head|upper}} : </h4>{% endif%}
+            {% if n.content %}
+            <p>{{ n.content|truncatewords:10 }}</p>{% endif%}
+            {% if n.post_img %}
             <img class="postImg" src="{{ n.post_img.url}}">{% endif%}
         </a>
 

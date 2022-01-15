@@ -9,7 +9,7 @@
         body {
             background-size: cover;
             font-family: 'HelveticaNeue', 'Arial', sans-serif;
-            background: #dff3f3;
+            background-color: #44aacc;
         }
         
         a {
@@ -175,12 +175,15 @@
                 {% csrf_token %}
                 <div class="form-item">
                     <p class="formLabel">Username</p>
-                    <input type="text" name="username" id="username" class="form-style" autocomplete="off" />
+                    <input type="text" name="username" id="username" class="form-style" autocomplete="off" required/>
                 </div>
                 <div class="form-item">
                     <p class="formLabel">Password</p>
-                    <input type="password" name="password" id="password" class="form-style" />
+                    <input type="password" name="password" id="password" class="form-style" required/>
                     <!-- <div class="pw-view"><i class="fa fa-eye"></i></div> -->
+                    {% if messages%} {% for massage in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor%} {% endif%}
                     <p><a href="#"><small>Forgot Password ?</small></a></p>
                 </div>
                 <div class="form-item">

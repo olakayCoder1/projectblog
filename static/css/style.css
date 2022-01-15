@@ -11,6 +11,7 @@ a {
 
 nav {
     background: #40fff5;
+    background-color: red;
     display: flex;
     justify-content: space-between;
     text-align: center;
