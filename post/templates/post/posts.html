@@ -46,7 +46,7 @@
             {% if n.head %}
             <h4>{{ n.head|upper}} : </h4>{% endif%}
             {% if n.content %}
-            <p>{{ n.content|truncatewords:10 }}</p>{% endif%}
+            <p>{{ n.content|truncatewords:50 }}</p>{% endif%}
             {% if n.post_img %}
             <img class="postImg" src="{{ n.post_img.url}}">{% endif%}
         </a>
@@ -90,7 +90,7 @@
     </div>
 </div>
 
-{% for n in m %} {{ n.post_img}} {% endfor%} {% endblock%} {% block content-left%}
+{% endblock%} {% block content-left%}
 <div class="event-part">
     <div class="event-header">
         <h4>Events</h4>

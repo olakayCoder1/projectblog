@@ -1,4 +1,6 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from post.models import Posts
 from django.contrib.auth.models import User
 from post.forms import CreatePostForm
@@ -6,7 +8,7 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required
 def post_page(request):
     if request.method == 'GET':
         form =  CreatePostForm()
@@ -33,7 +35,7 @@ def add_post(request):
     '''
     if request.method == 'POST':
         form = CreatePostForm(request.POST, request.FILES)
-        print(request.POST)
+        
         if form.is_valid():
             obj = form.save(commit=False)
             obj.author_id = request.user
@@ -58,4 +60,8 @@ def post_view(request, id):
 
 
 
-    
+def search_post(request):
+       kw = request.GET['keyword']
+       ch_word = Posts.objects.filter(Q(head__icontains=kw) | Q(content__icontains=kw))
+
+       return render(request, 'post/search.html' , {'post': ch_word })

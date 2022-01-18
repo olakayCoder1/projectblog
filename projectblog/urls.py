@@ -30,6 +30,7 @@ urlpatterns = [
     path('logout', auth_view.LogoutView.as_view(template_name='users/signout.html'), name='logout'),
     path('posts', post_views.post_page , name='posts') ,
     path('create-post/', post_views.add_post , name='create-post'),
+    path('search/', post_views.search_post , name='search') ,
     path('post/<str:id>', post_views.post_view , name='view-post'),
     path('profile-page/<str:id>', users_views.user_profile, name='profile-page')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,62 @@
+{% extends 'blog/base.html' %} {% block title%}search-post{% endblock%} {%load static%} {% block content %}
+<h2>Search result for <span style="color: blue;"><i>"{{ request.GET.keyword }}"</i></span></h2>
+{% for n in post %}
+<div class="news-update">
+    <div class="news-post-user">
+        <div class="new-post-user-about">
+            <img src="{%static 'images/python.jpg.png' %}">
+            <h4>{{ n.author_id.username }}</h4>
+        </div>
+        <p class="post-date">{{ n.date }}</p>
+    </div>
+    <a style=" text-decoration: none; color: black;" href="{% url 'view-post' n.id %}">
+        {% if n.head %}
+        <h4>{{ n.head|upper}} : </h4>{% endif%}
+        {% if n.content %}
+        <p>{{ n.content|truncatewords:50 }}</p>{% endif%}
+        {% if n.post_img %}
+        <img class="postImg" src="{{ n.post_img.url}}">{% endif%}
+    </a>
+
+    <div class="postRespond">
+        <span class="feel"><i class="fas fa-thumbs-up"></i>780</span>
+        <span class="feel"><i class="fas fa-thumbs-down"></i>3</span>
+        <span class="feel"><i class="fas fa-share"></i>931</span><span class="feel"><i class="fas fa-comment-alt"></i>675</span>
+        <input class="feel comment" placeholder="Comment"><br/>
+        <a href="#">View Comments</a>
+    </div>
+</div>
+{% endfor%} {% endblock%} {% block content-left%}
+
+<div class="event-part">
+    <div class="event-header">
+        <h4>Events</h4>
+        <a href="#">See all</a>
+    </div>
+    <div class="event-main">
+        <img src="{%static 'images/olakay.png.jpg' %}">
+        <div class="about-event">
+            <h4>Education</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Basin Gate</p>
+            <p>Cis Quiz</p>
+        </div>
+    </div>
+    <div class="event-main">
+        <img src="{%static 'images/images4.jpeg' %}">
+        <div class="about-event">
+            <h4>Tech</h4>
+            <p><i class="fas fa-map-marker-alt"></i> CISLT</p>
+            <p>Web design</p>
+        </div>
+    </div>
+</div>
+<div class="advert">
+    <div class="advert-header">
+        <h4> Advertisement </h4>
+        <a href="#">See all</a>
+    </div>
+    <img src="{%static 'images/images3.jpeg' %}" alt="">
+    <hr>
+</div>
+<div class="organiser"></div>
+</div>{% endblock%}
