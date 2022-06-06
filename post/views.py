@@ -24,6 +24,7 @@ def post_page(request):
     # If page is out of range (e.g. 9999), deliver last page of results.
             me = m.page(m.num_pages)
         return render(request, 'post/posts.html', {'m': me , 'form': form})
+        
 
 @login_required
 def add_post(request):

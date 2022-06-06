@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'users.middleware.AuthUserRedirectMiddleware'
 ]
 
 ROOT_URLCONF = 'projectblog.urls'
@@ -145,3 +146,4 @@ EMAIL_HOST_PASSWORD = ''
 
 LOGIN_REDIRECT_URL = 'posts'
 LOGIN_URL = 'signin'
+LOGOUNT_REDIRECT_URL = '/'
